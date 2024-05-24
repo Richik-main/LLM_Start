@@ -3,12 +3,10 @@ import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 #%%
 def main():
-    # Load pre-trained model and tokenizer
     model_name = 'gpt2'
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name)
     
-    # Ensure model is in evaluation mode
     model.eval()
 
     # Check if CUDA is available and move the model to GPU if possible
@@ -40,7 +38,7 @@ def main():
     generated_text = generate_text(prompt)
     print("Generated text:")
     print(generated_text)
-        # Example usage for few-shot learning
+    # Example usage for few-shot learning
     few_shot_prompt = (
         "Example 1: \n"
         "Input: What is the capital of France?\n"
@@ -60,15 +58,19 @@ def main():
 if __name__ == "__main__":
     main()
 # %%
+    
+##########  FLAN T5 for question answers ###########
+    
+
+
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 def main():
-    # Load pre-trained FLAN-T5 model and tokenizer
-    model_name = 'google/flan-t5-small'  # You can choose 'flan-t5-base', 'flan-t5-large', etc.
+    model_name = 'google/flan-t5-small'  
     tokenizer = T5Tokenizer.from_pretrained(model_name)
     model = T5ForConditionalGeneration.from_pretrained(model_name)
     
-    # Ensure model is in evaluation mode
+    
     model.eval()
 
     # Check if CUDA is available and move the model to GPU if possible
