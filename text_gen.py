@@ -26,7 +26,7 @@ def main():
             no_repeat_ngram_size=2,
             top_k=50,
             top_p=0.80,
-            temperature=0.7,
+            temperature=0.2,
             do_sample=True
         )
         # Decode and return the generated text
@@ -77,7 +77,7 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model.to(device)
 
-    def generate_text_few_shot(prompt, max_length=100):
+    def generate_text_few_shot(prompt, max_length=150):
         inputs = tokenizer(prompt, return_tensors='pt')
         inputs = inputs.to(device)
 
@@ -89,7 +89,7 @@ def main():
             no_repeat_ngram_size=2,
             top_k=50,
             top_p=0.95,
-            temperature=0.7,
+            temperature=0.2,
             do_sample=True
         )
 
@@ -339,3 +339,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# %%
+
+# %%
