@@ -8,3 +8,6 @@
 # Techniques to run complex and heavy LLM models on my mac
 - Tried to used quantization for running complex LLM models. 
 - Tried to use Mac's Metal Performance shaders for running huge models like LLaMa.
+
+# Using Fine tuning Techniques
+
