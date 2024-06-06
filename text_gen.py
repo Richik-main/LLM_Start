@@ -302,19 +302,21 @@ else:
 # Quantization method 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from datasets import load_dataset
 
 def main():
-    model_name = "huggyllama/llama-7b"  # Or any other smaller LLaMA model if available
+    model_name = "huggyllama/llama-7b"  # Ensure this model is available and correctly referenced
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
 
-    # Apply dynamic quantization
+    # Apply dynamic quantization for efficiency
     model = torch.quantization.quantize_dynamic(model, {torch.nn.Linear}, dtype=torch.qint8)
 
-    device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')  # Use MPS if available, else CPU
+    # Use MPS (Apple Silicon) if available, else use CPU
+    device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
     model.to(device)
 
-    def generate_text(prompt, max_new_tokens=50):
+    def generate_text(prompt, max_new_tokens=250):
         inputs = tokenizer(prompt, return_tensors="pt")
         inputs = {key: value.to(device) for key, value in inputs.items()}
 
@@ -331,15 +333,79 @@ def main():
         text = tokenizer.decode(outputs[0], skip_special_tokens=True)
         return text
 
-    # Example usage
-    prompt = "Once upon a time"
-    generated_text = generate_text(prompt)
-    print("Generated text:")
-    print(generated_text)
+    # Load the dataset from Hugging Face
+    dataset = load_dataset('squad', split='validation[:10]')  
+
+    # Generate responses for each example in the dataset
+    for example in dataset:
+        context = example['context']
+        question = example['question']
+        prompt = f"Context: {context}\n\nQuestion: {question}\nAnswer:"
+        generated_text = generate_text(prompt)
+        print("Generated text:")
+        print(generated_text)
+        print("\n" + "="*50 + "\n")
 
 if __name__ == "__main__":
     main()
 
+
 # %%
+
+# %%
+import torch
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from datasets import load_dataset
+
+def main():
+    model_name = 'gpt2'
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    model = GPT2LMHeadModel.from_pretrained(model_name)
+    
+    model.eval()
+
+    # Check if CUDA is available and move the model to GPU if possible
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device)
+
+    # Define a soft prompt (as if it were learned for PEFT)
+    soft_prompt = "You are an expert assistant. Answer the following queries with detailed and informative responses.\n\n"
+
+    # Function to generate text with PEFT using soft prompting
+    def generate_text(prompt, max_length=250):
+        # Combine soft prompt with user prompt
+        combined_prompt = soft_prompt + prompt
+        inputs = tokenizer.encode(combined_prompt, return_tensors='pt')
+        inputs = inputs.to(device)
+
+        # Generate text
+        outputs = model.generate(
+            inputs, 
+            max_length=max_length, 
+            num_return_sequences=1,
+            no_repeat_ngram_size=2,
+            top_k=50,
+            top_p=0.80,
+            temperature=0.2,
+            do_sample=True
+        )
+        # Decode and return the generated text
+        text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return text
+
+    # Load the dataset from Hugging Face
+    dataset = load_dataset('squad', split='validation[:3]')  
+    # Generate responses for each example in the dataset
+    for example in dataset:
+        context = example['context']
+        question = example['question']
+        prompt = f"Context: {context}\n\nQuestion: {question}\nAnswer:"
+        generated_text = generate_text(prompt)
+        print("Generated text:")
+        print(generated_text)
+        print("\n" + "="*50 + "\n")
+
+if __name__ == "__main__":
+    main()
 
 # %%
