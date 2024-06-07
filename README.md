@@ -12,3 +12,5 @@
 # Using Fine tuning Techniques
 - I will be using Peft Techniques (mainly LoRa and soft prompting) to imporve the performace without using a lot of compute resources
 
+Using dataset from hugging face
+
