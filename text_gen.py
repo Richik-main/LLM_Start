@@ -305,7 +305,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from datasets import load_dataset
 
 def main():
-    model_name = "huggyllama/llama-7b"  # Ensure this model is available and correctly referenced
+    model_name = "huggyllama/llama-7b"  
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
 
