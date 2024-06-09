@@ -364,7 +364,7 @@ def main():
     
     model.eval()
 
-    # Check if CUDA is available and move the model to GPU if possible
+    
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model.to(device)
 
