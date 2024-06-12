@@ -97,7 +97,7 @@ def main():
         text = tokenizer.decode(outputs[0], skip_special_tokens=True)
         return text
 
-    # Example usage for few-shot learning
+  
     few_shot_prompt = (
         "Example 1: \n"
         "Input: What is the capital of France?\n"
