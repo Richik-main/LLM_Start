@@ -5,7 +5,7 @@
 - used LLaMa model for text generation
 - used distilgpt2 as smaller model
 
-# Techniques to run complex and heavy LLM models on my mac
+# Techniques to run complex and heavy LLM models on macs
 - Tried to used quantization for running complex LLM models. 
 - Tried to use Mac's Metal Performance shaders for running huge models like LLaMa.
 
