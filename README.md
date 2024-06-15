@@ -7,7 +7,7 @@
 
 # Techniques to run complex and heavy LLM models on macs
 - Tried to used quantization for running complex LLM models. 
-- Tried to use Mac's Metal Performance shaders for running huge models like LLaMa.
+- Tried to use Mac's Metal Performance shaders for running huge models like LLaMa and Bloom.
 
 # Using Fine tuning Techniques
 - I will be using Peft Techniques (mainly LoRa and soft prompting) to imporve the performace without using a lot of compute resources
