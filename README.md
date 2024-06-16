@@ -14,5 +14,5 @@
 
 Using dataset from hugging face
 
-Utilizing cluster from Databricks clusters
+Utilizing cluster from Databricks cluster
 
