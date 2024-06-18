@@ -16,3 +16,5 @@ Using dataset from hugging face
 
 Utilizing cluster from Databricks cluster
 
+I am going to use API calls inside the application for seamless interaction.
+
