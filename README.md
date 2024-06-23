@@ -18,3 +18,7 @@ Utilizing cluster from Databricks
 
 I am going to use API calls inside the application for seamless interaction.
 
+
+Experiment 2:
+I have made API call for making the use of chatgpt 3.5. By doing this I have generated lyrics to a song.
+
