@@ -1,6 +1,6 @@
 # Basic LLM projects
 - Added plots for embeddings using Glove model.
-- Prompt Engineering on FLan-T5 model for text summarization
+- Prompt Engineering on FLan-T5 model for text summarizations
 - use gpt 2 for text generation
 - used LLaMa model for text generation
 - used distilgpt2 as smaller model
