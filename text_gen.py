@@ -47,8 +47,6 @@ def main():
         "Input: Who wrote 'To Kill a Mockingbird'?\n"
         "Output: 'To Kill a Mockingbird' was written by Harper Lee.\n\n"
         "Example 3: \n"
-        "Input: What is the capital of India?\n"
-        "Output: "
     )
 
     generated_text = generate_text(few_shot_prompt)
