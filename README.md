@@ -25,4 +25,9 @@ I have made API call for making the use of chatgpt 3.5. By doing this I have gen
 **Experiment 3:**
 I am going to train tabular data to make predictions on it
 
+<<<<<<< HEAD
 
+=======
+Last updated on 2024-09-29
+Last updated on 2024-09-29
+>>>>>>> 3899ea0 (Removed last update on 2024-09-29)
